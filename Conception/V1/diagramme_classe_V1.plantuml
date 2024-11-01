@@ -1,0 +1,90 @@
+@startuml
+
+class InterfaceUtilisateur {
+    - boutons : Bouton[]
+    - editeur : EditeurBuffer
+    - textArea : JTextArea
+    + InterfaceUtilisateur()
+}
+
+class Bouton {
+    - command : Command
+    + Bouton(String label)
+    + setCommand(Command command) 
+    + executeCommand()
+}
+
+abstract class Command {
+    - editor : EditeurBuffer
+    + Command(EditeurBuffer editor) 
+    + execute()
+}
+
+abstract class Selection extends Command {
+    + Selection(EditeurBuffer editor)
+    + execute()
+}
+
+class Copier extends Command {
+    + Copier(EditeurBuffer editor)
+    + execute()
+}
+
+class Couper extends Command {
+    + Couper(EditeurBuffer editor)
+    + execute()
+}
+
+class Coller extends Command {
+    + Coller(EditeurBuffer editor)
+    + execute()
+}
+
+class DeplacerSelectionGauche extends Selection {
+    + DeplacerSelectionGauche(EditeurBuffer editor)
+    + execute()
+}
+
+class DeplacerSelectionDroite extends Selection {
+    + DeplacerSelectionDroite(EditeurBuffer editor)
+    + execute()
+}
+
+class EditeurBuffer {
+    - texte : String
+    - debutSelection : String
+    - finSelection : int
+    - pressePapier : PressePapier
+    - textArea : JTextArea
+    + EditeurBuffer(JTextArea textArea)
+    + coller(String text)
+    + updateSelection(JTextArea text)
+    + getSelection(): String
+    + effacerSelection()
+    + setSelection(int debut, int fin)
+    + getDebutSelection(): int
+    + getFinSelection(): int
+    + getTexte(): String
+    + setTexte(String texte)
+    + getPressePapier(): PressePapier
+}
+
+class PressePapier {
+    - contenu :String
+    + PressePapier()
+    + setContenu(String contenu)
+    + getContenu(): String
+}
+
+class Main {
+    + main(String[] args)
+}
+
+' Relations entre les classes
+EditeurBuffer *- PressePapier 
+InterfaceUtilisateur -> Bouton : "Utilise"
+Bouton -> Command : "Possède"
+Command -> EditeurBuffer : "Reçoit"
+Main -> InterfaceUtilisateur 
+
+@enduml
