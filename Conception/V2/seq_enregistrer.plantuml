@@ -1,0 +1,40 @@
+@startuml
+mainframe sd "Enregistrer les actions"
+
+actor Utilisateur
+Utilisateur -> InterfaceUtilisateur : Clique sur "Enregistrer"
+activate Utilisateur
+
+InterfaceUtilisateur -> Bouton ++: executeCommand()
+activate InterfaceUtilisateur
+
+Bouton -> EnregistrerAction --: execute()
+activate EnregistrerAction
+
+EnregistrerAction --> InterfaceUtilisateur : Début de l'enregistrement des actions
+
+loop Pour chaque action
+    Utilisateur -> InterfaceUtilisateur : Clique sur un bouton de commande
+    activate Utilisateur
+
+    InterfaceUtilisateur -> Bouton ++: executeCommand()
+    activate InterfaceUtilisateur
+
+    Bouton -> Command --: execute()
+    activate Command
+
+    Command -> EditeurBuffer : Appliquer la commande à l'éditeur de texte
+    activate EditeurBuffer
+    EditeurBuffer --> InterfaceUtilisateur --: mise à jour de l'affichage
+    deactivate EditeurBuffer
+
+    InterfaceUtilisateur -> EnregistrerAction : addCommand(Command)
+    deactivate Command
+    deactivate Utilisateur
+end
+
+EnregistrerAction -> Historique : Sauvegarder l'état actuel de l'éditeur
+deactivate EnregistrerAction
+deactivate InterfaceUtilisateur
+deactivate Utilisateur
+@enduml
