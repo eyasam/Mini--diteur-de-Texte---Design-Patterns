@@ -1,0 +1,144 @@
+@startuml
+
+class InterfaceUtilisateur {
+    - boutons : Bouton[]
+    - editeur : EditeurBuffer
+    - textArea : JTextArea
+    - historique : Historique
+    + InterfaceUtilisateur()
+}
+
+abstract class Command {
+    - editor : EditeurBuffer
+    + Command(EditeurBuffer editor)
+    + execute()
+}
+
+abstract class Selection extends Command {
+    + Selection(EditeurBuffer editor)
+    + execute()
+}
+
+class Copier extends Command {
+    + Copier(EditeurBuffer editor)
+    + execute()
+}
+
+class Couper extends Command {
+    + Couper(EditeurBuffer editor)
+    + execute()
+}
+
+class Coller extends Command {
+    + Coller(EditeurBuffer editor)
+    + execute()
+}
+
+class DeplacerSelectionGauche extends Selection {
+    + DeplacerSelectionGauche(EditeurBuffer editor)
+    + execute()
+}
+
+class DeplacerSelectionDroite extends Selection {
+    + DeplacerSelectionDroite(EditeurBuffer editor)
+    + execute()
+}
+
+class EnregistrerAction extends Command {
+    - script : List<Command>
+    + EnregistrerAction(EditeurBuffer editor)
+    + addCommand(Command command)
+    + getScript() : List<Command>
+    + execute()
+}
+
+class DefaireAction extends Command {
+    - historique : Historique
+    + DefaireAction(EditeurBuffer editor, Historique historique)
+    + execute()
+}
+
+class RefaireAction extends Command {
+    - historique : Historique
+    + RefaireAction(EditeurBuffer editor, Historique historique)
+    + execute()
+}
+
+class RejouerAction extends Command {
+    - script : List<Command>
+    + RejouerAction(EditeurBuffer editor, List<Command> script)
+    + execute()
+}
+
+class Bouton {
+    - command : Command
+    + Bouton(String label)
+    + setCommand(Command command)
+    + executeCommand()
+    + getCommand() : Command
+}
+
+class Historique  {
+    - undoStack : Stack<Memento>
+    - redoStack : Stack<Memento>
+    + saveState(EditeurBuffer editor)
+    + undo(EditeurBuffer editor)
+    + redo(EditeurBuffer editor)
+}
+
+class EditeurBuffer {
+    - texte : String
+    - debutSelection : int
+    - finSelection : int
+    - pressePapier : PressePapier
+    - textArea : JTextArea
+    + EditeurBuffer(JTextArea textArea)
+    + createMemento() : Memento
+    + restoreMemento(Memento memento)
+    + coller(String text)
+    + updateSelection(JTextArea text)
+    + getSelection() : String
+    + effacerSelection()
+    + setSelection(int debut, int fin)
+    + getTexte() : String
+    + setTexte(String texte)
+    + getDebutSelection() : int
+    + getFinSelection() : int
+    + getPressePapier() : PressePapier
+}
+
+class PressePapier {
+    - contenu : String
+    + PressePapier()
+    + setContenu(String contenu)
+    + getContenu() : String
+}
+
+class Memento {
+    - texte : String
+    - debutSelection : int
+    - finSelection : int
+    + Memento(String texte, int debutSelection, int finSelection)
+    + getTexte() : String
+    + getDebutSelection() : int
+    + getFinSelection() : int
+}
+
+class Main {
+    + main(String[] args)
+}
+
+InterfaceUtilisateur -> Bouton 
+Bouton -> Command 
+Command -> EditeurBuffer 
+EditeurBuffer *- PressePapier
+EditeurBuffer *-- Memento
+Historique -> Memento 
+EditeurBuffer -> Historique 
+Main -> InterfaceUtilisateur
+DefaireAction --> Historique 
+RefaireAction --> Historique 
+RejouerAction --> Historique 
+EnregistrerAction --> Historique 
+
+@enduml
