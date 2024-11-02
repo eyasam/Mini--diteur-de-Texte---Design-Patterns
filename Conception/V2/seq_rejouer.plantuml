@@ -1,0 +1,35 @@
+@startuml
+mainframe sd "Rejouer les actions"
+
+actor Utilisateur
+Utilisateur -> InterfaceUtilisateur : Clique sur "Rejouer"
+
+InterfaceUtilisateur -> Bouton ++: executeCommand()
+activate InterfaceUtilisateur
+
+Bouton -> RejouerAction --: execute()
+activate RejouerAction
+
+RejouerAction -> EnregistrerAction ++: getScript()
+EnregistrerAction --> RejouerAction : Liste des commandes
+deactivate EnregistrerAction
+
+loop Pour chaque commande dans le script
+    RejouerAction -> Command : execute()
+    activate Command
+
+    Command -> EditeurBuffer : Appliquer la commande
+    deactivate Command
+
+    activate EditeurBuffer
+    EditeurBuffer --> InterfaceUtilisateur --: mise à jour de l'affichage
+    deactivate EditeurBuffer
+
+end
+
+RejouerAction --> InterfaceUtilisateur : Fin des actions
+deactivate RejouerAction
+deactivate InterfaceUtilisateur
+deactivate Utilisateur
+
+@enduml
