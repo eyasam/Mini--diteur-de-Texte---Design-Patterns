@@ -1,0 +1,17 @@
+@startuml
+actor Utilisateur
+participant InterfaceUtilisateur
+participant Bouton
+participant Couper
+participant EditeurBuffer
+participant PressePapier
+
+Utilisateur -> InterfaceUtilisateur : Clic sur le bouton "Couper"
+InterfaceUtilisateur -> Bouton : executeCommand()
+Bouton -> Couper : execute()
+Couper -> EditeurBuffer : getSelection()
+EditeurBuffer --> Couper : retourne le texte sélectionné
+Couper -> PressePapier : setContenu(texte)
+Couper -> EditeurBuffer : efface la sélection (texte = "")
+EditeurBuffer --> InterfaceUtilisateur : mise à jour de l'affichage du texte
+@enduml
