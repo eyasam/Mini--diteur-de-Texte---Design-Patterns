@@ -1,0 +1,32 @@
+@startuml
+mainframe sd "Refaire les actions"
+
+actor Utilisateur
+Utilisateur -> InterfaceUtilisateur : Clique sur "Refaire"
+activate Utilisateur
+
+InterfaceUtilisateur -> Bouton ++: executeCommand()
+activate InterfaceUtilisateur
+
+Bouton -> RefaireAction --: execute()
+activate RefaireAction
+
+alt Historique contient un état pour Refaire
+    RefaireAction -> Historique ++: redo(editor)
+    deactivate RefaireAction
+
+    Historique -> Memento --: Récupère le dernier état annulé
+    activate Memento
+
+    Memento --> EditeurBuffer ++: restoreMemento(memento)
+    deactivate Memento
+
+    EditeurBuffer --> InterfaceUtilisateur --: Mise à jour de l'affichage
+
+else Historique est vide
+    InterfaceUtilisateur --> Utilisateur : Aucun état à refaire
+end
+
+deactivate Utilisateur
+deactivate InterfaceUtilisateur
+@enduml
