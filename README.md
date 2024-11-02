@@ -24,32 +24,64 @@ Pour la version 1, nous avons choisi d'implémenter le **pattern Command** comme
 Les diagrammes ci-dessous illustrent la conception de la version 1 :
 - **Diagramme de Cas d'Utilisation**
   
-  ![Diagramme de Cas d'Utilisation - Version 1](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/raw/main/Conception/V1/Use_Case_V1.png)
+  [Diagramme de Cas d'Utilisation - Version 1](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/raw/main/Conception/V1/Use_Case_V1.png)
 
 - **Diagramme de Classe** : 
-![Diagramme de Classe - Version 1](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V1/classe_V1.png)
 
-     - EditeurBuffer contient un PressePapier pour stocker le texte copié ou coupé.
+  [Diagramme de Classe - Version 1](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V1/classe_V1.png)
+
+    - EditeurBuffer contient un PressePapier pour stocker le texte.
     - InterfaceUtilisateur utilise une liste de Bouton pour permettre à l’utilisateur de déclencher des actions spécifiques dans l’éditeur.
-    - Bouton possède un objet Command pour exécuter une action spécifique lorsqu'il est activé.
-    - Chaque commande reçoit une référence d’EditeurBuffer pour interagir directement avec le texte de l'éditeur.
-    - Selection hérite de Command pour représenter des actions spécifiques de manipulation de la sélection dans l'éditeur.
-    - Les classes Copier, Couper et Coller héritent de Command, ce qui leur permet d’exécuter des actions distinctes (copier, couper, coller) tout en suivant une interface commune définie par Command.
+    - Bouton possède un objet Command pour exécuter une action lorsqu'il est activé.
+    - Chaque commande interagit directement avec le texte de l'éditeur.
+    - Selection hérite de Command pour représenter des actions spécifiques de manipulation de la sélection.
+    - Les classes Copier, Couper et Coller héritent de Command, ce qui leur permet d’exécuter des actions distinctes tout en suivant une interface commune définie par Command.
     - Les classes DeplacerSelectionGauche et DeplacerSelectionDroite héritent de Selection pour modifier la position de la sélection dans le texte, en la déplaçant respectivement vers la gauche ou la droite.
 
-- **Diagrammes de Séquence** : 
+- Diagrammes de Séquence :
+
+  - **Séquence Couper** : [Diagramme de séquence pour la fonctionnalité - Couper](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V1/couper_seq.png)
+  - **Séquence Copier** : [Diagramme de séquence pour la fonctionnalité - Copier](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V1/copier_seq.png)
+  - **Séquence Coller** : [Diagramme de séquence pour la fonctionnalité - Coller](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V1/coller_seq.png)
+
 
 ### Version 2 - Pattern Memento
 Pour la version 2, nous avons introduit le **pattern Memento** pour gérer l'historique des actions, comme expliqué dans [cette page](https://refactoring.guru/fr/design-patterns/memento). Ce pattern permet de sauvegarder et de restaurer l'état de l'éditeur, facilitant la fonctionnalité d'annulation et de répétition des actions.
 
 Les diagrammes ci-dessous illustrent la conception de la version 2 :
-- **Diagramme de Cas d'Utilisation**  
-- **Diagramme de Classe** 
+- **Diagramme de Cas d'Utilisation**
+
+  [Diagramme de Cas d'Utilisation - Version 2](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V2/use_case_v2.png)
+
+- **Diagramme de Classe** : 
+
+  [Diagramme de Classe - Version 2](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V2/diag_classe_v2.png)
+
+  Nous avons ajouté à la version V1 les classes suivantes :
+
+  - **Classe Memento :** Stocke une instance de l'état de l'éditeur ce qui permet de restaurer un état précédent de l'éditeur.
+
+  - **Classe Historique :** Utilise deux piles pour gérer les actions "annuler" et "rétablir" en enregistrant un état après chaque modification, ce qui permet de naviguer entre les états précédents et futurs de l’éditeur.
+
+
+
+  - **Classe EnregistrerAction :** Sous-classe de Command qui permet d'enregistrer une séquence d'actions dans une liste pour les rejouer ultérieurement.
+
+  - **Classe RejouerAction :** Sous-classe de Command pour exécuter automatiquement une séquence d'actions enregistrée dans EnregistrerAction.
+
+  - **Classes DefaireAction et RefaireAction :** Gèrent l'annulation et la répétition des actions en utilisant la classe Historique.
+
+
 - **Diagrammes de Séquence** :
-  - *Défaire les actions*
-  - *Refaire les actions*
-  - *Enregistrer les actions*
-  - *Rejouer les actions*
+  - **Défaire les actions** : [Diagramme de séquence pour la fonctionnalité  - Défaire les actions](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V2/defaire_seq.png)
+
+  - *Refaire les actions* : [Diagramme de séquence pour la fonctionnalité - Refaire les actions](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V2/refaire_seq.png)
+
+  - *Enregistrer les actions* : [Diagramme de séquence pour la fonctionnalité - Enregistrer les actions](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V2/enregistrer_seq.png)
+
+  
+  - *Rejouer les actions* : [Diagramme de séquence pour la fonctionnalité - Rejouer les actions](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V2/rejouer_seq.png)
+
 
 
 ## Installation et Exécution
