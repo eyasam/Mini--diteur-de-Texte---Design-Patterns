@@ -1,0 +1,30 @@
+@startuml
+mainframe sd "Copier"
+
+actor Utilisateur
+
+participant InterfaceUtilisateur
+participant Bouton
+participant Copier
+participant EditeurBuffer
+participant PressePapier
+
+Utilisateur -> InterfaceUtilisateur ++: Clic sur le bouton "Copier"
+
+InterfaceUtilisateur -> Bouton -- : executeCommand()
+activate Bouton
+
+Bouton -> Copier : execute()
+deactivate Bouton
+
+activate Copier
+
+Copier -> EditeurBuffer : getSelection()
+activate EditeurBuffer
+
+EditeurBuffer --> Copier : retourne le texte sélectionné
+deactivate EditeurBuffer
+
+Copier -> PressePapier : setContenu(texte)
+deactivate Copier
+@enduml
