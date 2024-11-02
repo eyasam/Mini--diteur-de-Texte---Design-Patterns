@@ -90,12 +90,75 @@ Les diagrammes ci-dessous illustrent la conception de la version 2 :
 3. Exécutez la classe `Main` pour lancer chaque version.
 4. Utilisez l’interface pour tester les commandes de copie, couper, coller, ainsi que les fonctionnalités d’annulation et d’enregistrement (voir demo).
 
+
 ## Technologies et Outils Utilisés
 - **Java** : Langage de programmation.
 - **PlantUML** : Outil pour la création des diagrammes UML.
 - **draw.io** : Outil pour la création des diagrammes UML.
 - **Eclips** : Environnements de développement intégrés pour l'implémentation du code en Java.
 - **VSCode** : Editeur de code pour utiliser PlantUML.
+
+
+## Structure du projet 
+```
+tp2_omd_designpattern/
+│
+├── Conception/
+│   ├── V1/
+│   └── V2/
+│
+├── Code_MiniEditeur/
+│   ├── V1/
+│   │   └── src/
+│   │       ├── client/
+│   │       │   └── InterfaceUtilisateur.java
+│   │       ├── command/
+│   │       │   ├── Command.java
+│   │       │   ├── Coller.java
+│   │       │   ├── Copier.java
+│   │       │   ├── Couper.java
+│   │       │   ├── Selection.java
+│   │       │   ├── DeplacerSelectionDroite.java
+│   │       │   └── DeplacerSelectionGauche.java
+│   │       ├── invoker/
+│   │       │   └── Bouton.java
+│   │       ├── receiver/
+│   │       │   └── EditeurBuffer.java
+│   │       └── main/
+│   │           ├── Main.java
+│   │           └── PressePapier.java
+│   │
+│   ├── V2/
+│   │   └── src/
+│   │       ├── caretaker/
+│   │       │   └── Historique.java
+│   │       ├── memento/
+│   │       │   └── Memento.java
+│   │       ├── originator/
+│   │       │   └── EditeurBuffer.java
+│   │       ├── client/
+│   │       │   └── InterfaceUtilisateur.java
+│   │       ├── command/
+│   │       │   ├── Command.java
+│   │       │   ├── Coller.java
+│   │       │   ├── Copier.java
+│   │       │   ├── Couper.java
+│   │       │   ├── Selection.java
+│   │       │   ├── DeplacerSelectionDroite.java
+│   │       │   ├── DeplacerSelectionGauche.java
+│   │       │   ├── RejouerAction.java
+│   │       │   ├── RefaireAction.java
+│   │       │   └── EnregistrerAction.java
+│   │       ├── invoker/
+│   │       │   └── Bouton.java
+│   │       └── main/
+│   │           ├── Main.java
+│   │           └── PressePapier.java
+│
+└── README.md
+```
+
+
 
 ## Auteurs
 - **Eya SAMMARI** 
