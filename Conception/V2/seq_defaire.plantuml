@@ -1,0 +1,32 @@
+@startuml
+mainframe sd "Défaire les actions"
+
+actor Utilisateur
+Utilisateur -> InterfaceUtilisateur : Clique sur "Défaire"
+activate Utilisateur
+
+InterfaceUtilisateur -> Bouton ++: executeCommand()
+activate InterfaceUtilisateur
+
+Bouton -> DefaireAction --: execute()
+activate DefaireAction
+
+alt Historique contient un état pour Défaire
+    DefaireAction -> Historique ++ : undo(editor)
+deactivate DefaireAction
+
+    Historique -> Memento --: Récupère l'état précédent
+activate Memento
+
+    Memento --> EditeurBuffer ++: restoreMemento(memento)
+deactivate Memento
+
+    EditeurBuffer --> InterfaceUtilisateur --: Mise à jour de l'affichage
+
+else Historique est vide
+    InterfaceUtilisateur --> Utilisateur : Aucun état à défaire
+end
+deactivate Utilisateur
+deactivate InterfaceUtilisateur
+
+@enduml
