@@ -1,0 +1,29 @@
+@startuml
+mainframe sd "Coller"
+
+actor Utilisateur
+
+participant InterfaceUtilisateur
+participant Bouton
+participant Coller
+participant EditeurBuffer
+participant PressePapier
+
+Utilisateur -> InterfaceUtilisateur : Clic sur le bouton "Coller"
+activate InterfaceUtilisateur
+
+InterfaceUtilisateur -> Bouton ++ : executeCommand()
+Bouton -> Coller -- : execute()
+activate Coller
+activate PressePapier
+Coller -> PressePapier : getContenu()
+PressePapier --> Coller : retourne le contenu du presse-papier
+Coller -> EditeurBuffer : remplacer la sélection par le contenu
+deactivate Coller
+deactivate PressePapier
+activate EditeurBuffer
+
+EditeurBuffer --> InterfaceUtilisateur : mise à jour de l'affichage du texte
+deactivate EditeurBuffer
+deactivate InterfaceUtilisateur
+@enduml
