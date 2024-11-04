@@ -1,5 +1,4 @@
 @startuml
-
 class InterfaceUtilisateur {
     - boutons : Bouton[]
     - editeur : EditeurBuffer
@@ -48,7 +47,7 @@ class EnregistrerAction extends Command {
     - script : List<Command>
     + EnregistrerAction(EditeurBuffer editor)
     + addCommand(Command command)
-    + getScript() : List<Command>
+    + getScript()
     + execute()
 }
 
@@ -136,6 +135,5 @@ Main -> InterfaceUtilisateur
 DefaireAction --> Historique 
 RefaireAction --> Historique 
 RejouerAction --> Historique 
-EnregistrerAction --> Historique 
-
+EnregistrerAction --> Historique
 @enduml
