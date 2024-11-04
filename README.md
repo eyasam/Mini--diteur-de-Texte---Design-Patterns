@@ -127,32 +127,32 @@ tp2_omd_designpattern/
 │   │           ├── Main.java
 │   │           └── PressePapier.java
 │   │
-│   ├── V2/
-│   │   └── src/
-│   │       ├── caretaker/
-│   │       │   └── Historique.java
-│   │       ├── memento/
-│   │       │   └── Memento.java
-│   │       ├── originator/
-│   │       │   └── EditeurBuffer.java
-│   │       ├── client/
-│   │       │   └── InterfaceUtilisateur.java
-│   │       ├── command/
-│   │       │   ├── Command.java
-│   │       │   ├── Coller.java
-│   │       │   ├── Copier.java
-│   │       │   ├── Couper.java
-│   │       │   ├── Selection.java
-│   │       │   ├── DeplacerSelectionDroite.java
-│   │       │   ├── DeplacerSelectionGauche.java
-│   │       │   ├── RejouerAction.java
-│   │       │   ├── RefaireAction.java
-│   │       │   └── EnregistrerAction.java
-│   │       ├── invoker/
-│   │       │   └── Bouton.java
-│   │       └── main/
-│   │           ├── Main.java
-│   │           └── PressePapier.java
+│   └──V2/
+│       └── src/
+│           ├── caretaker/
+│           │   └── Historique.java
+│           ├── memento/
+│           │   └── Memento.java
+│           ├── originator/
+│           │   └── EditeurBuffer.java
+│           ├── client/
+│           │   └── InterfaceUtilisateur.java
+│           ├── command/
+│           │   ├── Command.java
+│           │   ├── Coller.java
+│           │   ├── Copier.java
+│           │   ├── Couper.java
+│           │   ├── Selection.java
+│           │   ├── DeplacerSelectionDroite.java
+│           │   ├── DeplacerSelectionGauche.java
+│           │   ├── RejouerAction.java
+│           │   ├── RefaireAction.java
+│           │   └── EnregistrerAction.java
+│           ├── invoker/
+│           │   └── Bouton.java
+│           └── main/
+│               ├── Main.java
+│               └── PressePapier.java
 │
 ├── demo_V1.mp4
 ├── demo_V2.mp4
