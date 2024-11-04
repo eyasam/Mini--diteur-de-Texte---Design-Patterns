@@ -1,5 +1,4 @@
 @startuml
-
 class InterfaceUtilisateur {
     - boutons : Bouton[]
     - editeur : EditeurBuffer
@@ -76,15 +75,9 @@ class PressePapier {
     + getContenu(): String
 }
 
-class Main {
-    + main(String[] args)
-}
-
-' Relations entre les classes
 EditeurBuffer *- PressePapier 
 InterfaceUtilisateur -> Bouton : "Utilise"
 Bouton -> Command : "Possède"
 Command -> EditeurBuffer : "Reçoit"
-Main -> InterfaceUtilisateur 
-
+Main -> InterfaceUtilisateur
 @enduml
