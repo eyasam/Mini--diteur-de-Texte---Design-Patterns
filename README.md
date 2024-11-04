@@ -64,7 +64,6 @@ Les diagrammes ci-dessous illustrent la conception de la version 2 :
   - **Classe Historique :** Utilise deux piles pour gérer les actions "annuler" et "rétablir" en enregistrant un état après chaque modification, ce qui permet de naviguer entre les états précédents et futurs de l’éditeur.
 
 
-
   - **Classe EnregistrerAction :** Sous-classe de Command qui permet d'enregistrer une séquence d'actions dans une liste pour les rejouer ultérieurement.
 
   - **Classe RejouerAction :** Sous-classe de Command pour exécuter automatiquement une séquence d'actions enregistrée dans EnregistrerAction.
@@ -73,7 +72,7 @@ Les diagrammes ci-dessous illustrent la conception de la version 2 :
 
 
 - **Diagrammes de Séquence** :
-  - **Défaire les actions** : [Diagramme de séquence pour la fonctionnalité  - Défaire les actions](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V2/defaire_seq.png)
+  - *Défaire les actions* : [Diagramme de séquence pour la fonctionnalité  - Défaire les actions](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V2/defaire_seq.png)
 
   - *Refaire les actions* : [Diagramme de séquence pour la fonctionnalité - Refaire les actions](https://gitlab.istic.univ-rennes1.fr/esammari/tp2_omd_designpattern/-/blob/main/Conception/V2/refaire_seq.png)
 
