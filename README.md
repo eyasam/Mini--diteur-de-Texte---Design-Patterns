@@ -1,4 +1,4 @@
-# Mini-Éditeur de Texte - TP2 OMD
+# Mini-Éditeur de Texte 
 
 ## Description du Projet
 Ce projet vise à développer un mini-éditeur de texte en appliquant des concepts de conception orientée objet et des **design patterns** standard pour améliorer la structure et la maintenabilité du code. Le projet est divisé en deux versions :
@@ -163,7 +163,5 @@ tp2_omd_designpattern/
 
 
 ## Auteurs
-- **Eya SAMMARI** 
-- **Mey CHERIF**
-
+- [**Eya SAMMARI**](https://www.linkedin.com/in/eya-sam/)
 
